@@ -61,7 +61,6 @@ const UsersList = () => {
 
   const memoizedValue = useMemo(() => renderItem, [data]);
 
-
   return (
         <FlatList
           keyExtractor={item => item?.login?.sha256}
