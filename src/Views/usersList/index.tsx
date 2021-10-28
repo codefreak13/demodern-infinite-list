@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState,useMemo} from 'react';
 import {
   View,
   FlatList,
@@ -59,12 +59,14 @@ const UsersList = () => {
 
   const renderSeperator = () => <View style={styles.divider} />;
 
+  const memoizedValue = useMemo(() => renderItem, [data]);
+
+
   return (
         <FlatList
           keyExtractor={item => item?.login?.sha256}
           data={data}
-          initialNumToRender={5}
-          renderItem={renderItem}
+          renderItem={memoizedValue}
           refreshControl={
             <RefreshControl refreshing={refresh} onRefresh={onRefresh} />
           }
